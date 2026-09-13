@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phiangkhuan Korsanthia — Frontend Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Phiangkhuan Korsanthia, Senior Computer Science student at Sripatum University and Frontend Developer specializing in React.js, modern UI/UX, and RESTful API integrations." />
+
+  <!-- Google Fonts: Space Grotesk + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            title: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            paper: '#fafaf9',
+            surface: '#ffffff',
+            ink: '#0f172a',
+            subtle: '#64748b',
+            line: '#e2e8f0',
+            primary: '#2563eb',
+            'primary-soft': '#eff6ff',
+            emeraldBadge: '#059669',
+            'emerald-soft': '#ecfdf5',
+          },
+          boxShadow: {
+            'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -2px rgba(15, 23, 42, 0.03)',
+            'card-hover': '0 12px 30px -4px rgba(15, 23, 42, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.05)',
+            'subtle-glow': '0 0 40px -10px rgba(37, 99, 235, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Micro-details */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-white relative">
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 ease-out bg-ink text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-sm font-medium border border-white/10">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-line transition-all duration-200">
+    <div class="max-w-6xl mx-auto px-6 h-18 py-3 flex items-center justify-between">
+      <!-- Logo / Name Badge -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-ink text-white flex items-center justify-center font-title font-bold text-base tracking-wider group-hover:bg-primary transition-colors shadow-sm">
+          PK
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title font-bold text-sm tracking-tight text-ink group-hover:text-primary transition-colors">
+            Phiangkhuan Korsanthia
+          </span>
+          <span class="text-[11px] font-mono text-emeraldBadge flex items-center gap-1.5 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Open for Co-op / Junior Roles
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-subtle">
+        <a href="#about" class="hover:text-ink transition-colors">About</a>
+        <a href="#projects" class="hover:text-ink transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-ink transition-colors">Skills & Tech</a>
+        <a href="#education" class="hover:text-ink transition-colors">Education</a>
+      </nav>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="mailto:phiangkhua.kor@spumail.net" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-line bg-surface hover:bg-slate-50 text-ink text-xs font-semibold tracking-wide transition-all shadow-sm">
+          <i data-lucide="send" class="w-3.5 h-3.5 text-primary"></i>
+          <span>Get in Touch</span>
+        </a>
+        <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink text-white hover:bg-primary text-xs font-semibold tracking-wide transition-all shadow-sm">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span>View Works</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pt-12 md:pt-20 pb-24 space-y-28">
+
+    <!-- HERO SECTION -->
+    <section class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Bio Info (Span 7) -->
+      <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft border border-blue-200 text-blue-800 text-xs font-mono font-medium">
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          <span>Computer Science & Software Dev • Senior Student</span>
+        </div>
+
+        <!-- Headline -->
+        <div class="space-y-2">
+          <h1 class="font-title font-extrabold text-4xl sm:text-5xl lg:text-6xl text-ink tracking-tight leading-[1.12]">
+            Frontend Developer crafting <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">fluid, accessible</span> web apps.
+          </h1>
+          <p class="text-subtle font-mono text-sm tracking-wide">
+            Based in Bangkok, Thailand • Sripatum University (CSI & SDI)
+          </p>
+        </div>
+
+        <!-- Bio Paragraph -->
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl font-normal">
+          Hi, I'm <strong>Phiangkhuan</strong>. I specialize in building human-centered web interfaces with <strong>React.js</strong>, responsive modern CSS, and clean API integrations. Experienced in delivering full academic software solutions with role-based auth, dynamic state pipelines, and AI chatbot interfaces.
+        </p>
+
+        <!-- Interactive Quick Contact Pill Bar -->
+        <div class="p-3.5 rounded-2xl bg-surface border border-line shadow-card flex flex-wrap items-center gap-3 text-xs">
+          <!-- Email Button with Copy -->
+          <button onclick="copyToClipboard('phiangkhua.kor@spumail.net', 'Email address')" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-100 transition-colors text-ink font-medium group">
+            <i data-lucide="mail" class="w-4 h-4 text-primary"></i>
+            <span>phiangkhua.kor@spumail.net</span>
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-subtle group-hover:text-ink ml-0.5"></i>
+          </button>
+
+          <span class="text-line hidden sm:inline">|</span>
+
+          <!-- Phone with Copy -->
+          <button onclick="copyToClipboard('0641714015', 'Phone number')" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-100 transition-colors text-ink font-medium group">
+            <i data-lucide="phone" class="w-4 h-4 text-emeraldBadge"></i>
+            <span>064-171-4015</span>
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-subtle group-hover:text-ink ml-0.5"></i>
+          </button>
+        </div>
+
+        <!-- Social & Direct Link Buttons -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="https://github.com/phiangkhuankor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ink text-white font-medium text-sm hover:bg-slate-800 transition-all shadow-sm">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>GitHub Profile</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/phiangkhuan-korsanthia-05a472432?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-line bg-surface text-ink font-medium text-sm hover:border-blue-400 hover:bg-blue-50/50 transition-all shadow-sm">
+            <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i>
+            <span>LinkedIn Profile</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-subtle"></i>
+          </a>
+
+          <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-line bg-surface text-subtle font-medium text-sm hover:text-ink hover:bg-slate-50 transition-all">
+            <i data-lucide="code-2" class="w-4 h-4 text-primary"></i>
+            <span>Browse 3 Projects</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Hero Visual / Profile Image (Span 5) -->
+      <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+        <div class="relative w-64 sm:w-72 md:w-80">
+          
+          <!-- Background Ambient Glow -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-blue-200 via-indigo-100 to-emerald-100 rounded-3xl filter blur-2xl opacity-70 -z-10"></div>
+
+          <!-- Card Outer Shell -->
+          <div class="p-3 bg-surface rounded-3xl border-2 border-line/80 shadow-2xl relative">
+            
+            <!-- Real User Profile Image with Fallback -->
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 border border-line relative">
+              <img 
+                src="Profile.jfif" 
+                alt="Phiangkhuan Korsanthia — Frontend Developer" 
+                class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x750/0f172a/ffffff?text=Phiangkhuan+K.';"
+              />
+            </div>
+
+            <!-- Floating Pill Tag 1: University Badge -->
+            <div class="absolute -top-3 -right-3 bg-surface border border-line shadow-lg px-3.5 py-1.5 rounded-xl flex items-center gap-2 text-xs font-mono font-semibold text-ink">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              <span>Sripatum Univ.</span>
+            </div>
+
+            <!-- Floating Pill Tag 2: Available Badge -->
+            <div class="absolute -bottom-4 -left-3 bg-surface border border-line shadow-lg px-4 py-2 rounded-2xl flex items-center gap-2.5 text-xs font-semibold text-ink">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <div>
+                <p class="leading-none text-ink font-bold">Available Now</p>
+                <p class="text-[10px] text-subtle font-mono mt-0.5">Co-op & Full-time 2026</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="about" class="grid md:grid-cols-12 gap-8 items-start pt-6 border-t border-line">
+      
+      <div class="md:col-span-4 space-y-2">
+        <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">01 / Background</span>
+        <h2 class="font-title font-bold text-2xl sm:text-3xl text-ink">Summary & Education</h2>
+        <p class="text-sm text-subtle">
+          Academic foundation in Computer Science with a practical focus on user-facing web engineering.
+        </p>
+      </div>
+
+      <div class="md:col-span-8 space-y-6">
+        
+        <!-- Summary Box -->
+        <div class="p-6 rounded-2xl bg-surface border border-line shadow-card space-y-3">
+          <h3 class="font-bold text-base text-ink flex items-center gap-2">
+            <i data-lucide="user-check" class="w-4 h-4 text-primary"></i>
+            <span>Professional Summary</span>
+          </h3>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Fourth-year Computer Science and Software Development student at <strong>Sripatum University</strong> with a strong interest in modern web development and Frontend Engineering. Experienced in delivering academic software projects and developing web interfaces with a deep focus on usability, responsiveness, and intuitive user experience. Looking to apply hands-on technical skills in a real-world software engineering team.
+          </p>
+        </div>
+
+        <!-- Education Card -->
+        <div class="p-6 rounded-2xl bg-surface border border-line shadow-card flex flex-col sm:flex-row justify-between gap-4 sm:items-center">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 text-xs font-mono text-primary font-semibold">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+              <span>Bachelor of Science (B.Sc.)</span>
+            </div>
+            <h4 class="font-title font-bold text-lg text-ink">Sripatum University (SPU)</h4>
+            <p class="text-sm text-subtle">
+              Information Technology: Computer Science and Software Development Innovation (SDI / CSI)
+            </p>
+          </div>
+          <div class="sm:text-right shrink-0">
+            <span class="badge-pill bg-slate-100 text-slate-800 border border-slate-200">
+              2023 — Present
+            </span>
+            <p class="text-[11px] font-mono text-emeraldBadge font-medium mt-1">Senior Year</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="projects" class="space-y-8 pt-4">
+      
+      <!-- Section Header with Filter Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-line pb-6">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">02 / Verified Projects</span>
+          <h2 class="font-title font-bold text-3xl sm:text-4xl text-ink mt-1">Proof of Work</h2>
+          <p class="text-sm text-subtle mt-1">
+            Real software built during coursework and capstone projects. All source code verified.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono" id="project-filters">
+          <button onclick="filterProjects('all')" class="filter-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-ink text-white" data-filter="all">
+            All (3)
+          </button>
+          <button onclick="filterProjects('react')" class="filter-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-slate-100 hover:bg-slate-200 text-subtle" data-filter="react">
+            React.js
+          </button>
+          <button onclick="filterProjects('ai')" class="filter-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-slate-100 hover:bg-slate-200 text-subtle" data-filter="ai">
+            AI / Chatbot
+          </button>
+          <button onclick="filterProjects('mvc')" class="filter-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-slate-100 hover:bg-slate-200 text-subtle" data-filter="mvc">
+            ASP.NET MVC
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid / Cards -->
+      <div class="space-y-10" id="projects-container">
+
+        <!-- PROJECT 1: FIXUP (FLAGSHIP) -->
+        <article class="project-card rounded-3xl bg-surface border border-line hover:border-slate-400 transition-all duration-300 shadow-card hover:shadow-card-hover overflow-hidden" data-category="react">
+          <div class="p-6 sm:p-9 space-y-6">
+            
+            <!-- Top Header & Badges -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-line/60 pb-5">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200">
+                    <i data-lucide="star" class="w-3 h-3 fill-blue-500 text-blue-500"></i>
+                    Flagship Project
+                  </span>
+                  <span class="badge-pill bg-slate-100 text-slate-700">Full-Stack Capstone</span>
+                </div>
+                <h3 class="font-title font-bold text-2xl sm:text-3xl text-ink">
+                  FixUp — Maintenance Request Management System
+                </h3>
+              </div>
+
+              <!-- Live Links -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="https://github.com/phiangkhuankor/FixUp-Maintenance-Request-Management-System" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink text-white text-xs font-semibold hover:bg-primary transition-colors shadow-sm">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  <span>Inspect Code</span>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-300"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              A comprehensive maintenance ticket management platform built to streamline repair requests across <strong>three user roles</strong>: User (requester), Technician (service handler), and Admin (system manager). Connects a reactive client application with Node.js and MySQL via secure RESTful APIs.
+            </p>
+
+            <!-- Key Highlights / Architecture Bullets -->
+            <div class="grid sm:grid-cols-3 gap-4 py-2">
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i>
+                  <span>Role-Based Auth</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Custom authentication guard allowing separate portals and permission controls for Users, Techs, and Admins.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="image-plus" class="w-4 h-4 text-blue-600"></i>
+                  <span>Attachment Pipeline</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Client-side image upload previews and multipart request dispatching for repair evidence documentation.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="activity" class="w-4 h-4 text-blue-600"></i>
+                  <span>Live Status Tracking</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Interactive ticket status transitions (Pending, Assigned, In Progress, Resolved) with feedback states.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tech Specification Pill Grid -->
+            <div class="pt-2 flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono text-subtle mr-2 font-semibold">Tech Matrix:</span>
+              <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-100">React.js</span>
+              <span class="badge-pill bg-amber-50 text-amber-800 border border-amber-100">JavaScript (ES6+)</span>
+              <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-100">CSS3</span>
+              <span class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-100">Node.js</span>
+              <span class="badge-pill bg-violet-50 text-violet-800 border border-violet-100">REST API</span>
+              <span class="badge-pill bg-indigo-50 text-indigo-800 border border-indigo-100">MySQL</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- PROJECT 2: LAW BOT -->
+        <article class="project-card rounded-3xl bg-surface border border-line hover:border-slate-400 transition-all duration-300 shadow-card hover:shadow-card-hover overflow-hidden" data-category="ai">
+          <div class="p-6 sm:p-9 space-y-6">
+            
+            <!-- Top Header & Badges -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-line/60 pb-5">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="badge-pill bg-purple-50 text-purple-700 border border-purple-200">
+                    <i data-lucide="sparkles" class="w-3 h-3 text-purple-600"></i>
+                    AI & Legal Tech
+                  </span>
+                  <span class="badge-pill bg-slate-100 text-slate-700">RAG Chatbot UI</span>
+                </div>
+                <h3 class="font-title font-bold text-2xl sm:text-3xl text-ink">
+                  LAW BOT — Civil & Commercial Law Chatbot
+                </h3>
+              </div>
+
+              <!-- Live Links -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="https://github.com/phiangkhuankor/LAW-BOT-Civil-and-Commercial-Law-Chatbot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink text-white text-xs font-semibold hover:bg-primary transition-colors shadow-sm">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  <span>Inspect Code</span>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-300"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              An intelligent legal advisory conversational web application designed to help Thai citizens and students query Thai Civil and Commercial Code. Responsible for designing and developing the frontend conversational UI, chat bubble rendering, session history storage, and seamless REST integration with a FastAPI-driven <strong>Retrieval-Augmented Generation (RAG)</strong> backend.
+            </p>
+
+            <!-- Key Highlights Bullets -->
+            <div class="grid sm:grid-cols-3 gap-4 py-2">
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="message-square" class="w-4 h-4 text-purple-600"></i>
+                  <span>Chat Experience UI</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Dynamic chat bubble streams, markdown/legal text formatting, and typing indicators.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="clock" class="w-4 h-4 text-purple-600"></i>
+                  <span>History Drawer</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Organized query history log allowing users to reload previous legal discussions quickly.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="cpu" class="w-4 h-4 text-purple-600"></i>
+                  <span>RAG Integration</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Connected UI with FastAPI endpoints querying vector embeddings of legal statutes.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tech Specification Pill Grid -->
+            <div class="pt-2 flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono text-subtle mr-2 font-semibold">Tech Matrix:</span>
+              <span class="badge-pill bg-orange-50 text-orange-800 border border-orange-100">HTML5</span>
+              <span class="badge-pill bg-blue-50 text-blue-800 border border-blue-100">CSS3</span>
+              <span class="badge-pill bg-amber-50 text-amber-800 border border-amber-100">JavaScript</span>
+              <span class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-100">FastAPI</span>
+              <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-100">Python</span>
+              <span class="badge-pill bg-purple-50 text-purple-800 border border-purple-100">RAG Architecture</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- PROJECT 3: ICE CREAM SHOP -->
+        <article class="project-card rounded-3xl bg-surface border border-line hover:border-slate-400 transition-all duration-300 shadow-card hover:shadow-card-hover overflow-hidden" data-category="mvc">
+          <div class="p-6 sm:p-9 space-y-6">
+            
+            <!-- Top Header & Badges -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-line/60 pb-5">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="badge-pill bg-pink-50 text-pink-700 border border-pink-200">
+                    <i data-lucide="shopping-bag" class="w-3 h-3 text-pink-600"></i>
+                    E-Commerce Platform
+                  </span>
+                  <span class="badge-pill bg-slate-100 text-slate-700">MVC Architecture</span>
+                </div>
+                <h3 class="font-title font-bold text-2xl sm:text-3xl text-ink">
+                  Online Homemade Ice Cream Shop
+                </h3>
+              </div>
+
+              <!-- Live Links -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="https://github.com/phiangkhuankor/Online-Homemade-Ice-Cream-Shop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink text-white text-xs font-semibold hover:bg-primary transition-colors shadow-sm">
+                  <i data-lucide="github" class="w-4 h-4"></i>
+                  <span>Inspect Code</span>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-300"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              A full-featured web shop application for custom homemade ice cream ordering. Designed and developed the customer-facing views using ASP.NET Core MVC Razor views, HTML, CSS, and Bootstrap. Built product browsing galleries, detailed item modifiers, user authentication views (Login/Register), and an intuitive "My Order" dashboard.
+            </p>
+
+            <!-- Key Highlights Bullets -->
+            <div class="grid sm:grid-cols-3 gap-4 py-2">
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="layout-grid" class="w-4 h-4 text-pink-600"></i>
+                  <span>Product Catalog</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Responsive product catalog with category filtering, price tags, and flavor breakdowns.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="user-check" class="w-4 h-4 text-pink-600"></i>
+                  <span>Customer Authentication</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Secured authentication forms with client-side validation for seamless registration and checkout.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 border border-line space-y-1">
+                <div class="flex items-center gap-2 font-semibold text-xs text-ink font-mono">
+                  <i data-lucide="package-check" class="w-4 h-4 text-pink-600"></i>
+                  <span>Order Dashboard</span>
+                </div>
+                <p class="text-xs text-subtle">
+                  Dedicated customer dashboard displaying historic orders, item breakdowns, and delivery states.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tech Specification Pill Grid -->
+            <div class="pt-2 flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono text-subtle mr-2 font-semibold">Tech Matrix:</span>
+              <span class="badge-pill bg-purple-50 text-purple-800 border border-purple-100">ASP.NET Core MVC</span>
+              <span class="badge-pill bg-indigo-50 text-indigo-800 border border-indigo-100">C#</span>
+              <span class="badge-pill bg-orange-50 text-orange-800 border border-orange-100">HTML5</span>
+              <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-100">CSS3</span>
+              <span class="badge-pill bg-violet-50 text-violet-800 border border-violet-100">Bootstrap</span>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section id="skills" class="space-y-8 pt-4">
+      
+      <div class="border-b border-line pb-4">
+        <span class="font-mono text-xs uppercase tracking-wider text-primary font-semibold">03 / Competencies</span>
+        <h2 class="font-title font-bold text-3xl text-ink mt-1">Technical Skills & Tooling</h2>
+        <p class="text-sm text-subtle mt-1">
+          A balanced skill set across modern client-side engineering, server APIs, and design workflows.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Column 1: Frontend -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-surface border border-line shadow-card space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+              <i data-lucide="layout" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-subtle uppercase">Core Specialization</span>
+              <h3 class="font-title font-bold text-xl text-ink mt-0.5">Frontend Development</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Proficient in building semantic, accessible, and responsive user interfaces with reactive frameworks.
+            </p>
+
+            <ul class="space-y-2.5 pt-2 text-sm text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">HTML5 & Semantic Markup</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">CSS3 & Responsive Design</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">JavaScript (ES6+ / DOM APIs)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">React.js (Components & State)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span>Bootstrap & Utility Styling</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-line text-xs font-mono text-subtle">
+            Focus: UI Performance & Usability
+          </div>
+        </div>
+
+        <!-- Column 2: Backend & Database -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-surface border border-line shadow-card space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <i data-lucide="database" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-subtle uppercase">Server & Data Flow</span>
+              <h3 class="font-title font-bold text-xl text-ink mt-0.5">Backend & APIs</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Experience connecting web clients with backend endpoints, relational data, and microservices.
+            </p>
+
+            <ul class="space-y-2.5 pt-2 text-sm text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">RESTful API Design & Consume</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">Node.js & Express Basics</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">MySQL Relational DB</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span>ASP.NET Core MVC & C#</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span>FastAPI / Python (AI RAG pipeline)</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-line text-xs font-mono text-subtle">
+            Focus: Data Integration & Auth
+          </div>
+        </div>
+
+        <!-- Column 3: Tools & Methodologies -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-surface border border-line shadow-card space-y-5 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <i data-lucide="wrench" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-subtle uppercase">Workflow & Soft Skills</span>
+              <h3 class="font-title font-bold text-xl text-ink mt-0.5">Tools & Collaboration</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Effective tools for continuous iteration, rapid prototyping, and communicative teamwork.
+            </p>
+
+            <ul class="space-y-2.5 pt-2 text-sm text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">VS Code Environment</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">Git Version Control & GitHub</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span class="font-semibold">Figma & Canva Prototyping</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span>Problem Solving & Self-Learning</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>
+                <span>Team Collaboration & Thai/English</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-line text-xs font-mono text-subtle">
+            Languages: Thai (Native) • English
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="contact" class="rounded-3xl bg-gradient-to-b from-slate-900 to-ink text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+      <!-- Decorative background blur -->
+      <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-2xl space-y-6 relative z-10">
+        <span class="badge-pill bg-white/10 text-emerald-400 border border-white/15">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          Ready for New Opportunities
+        </span>
+
+        <h2 class="font-title font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+          Let’s build something impactful together.
+        </h2>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          I'm actively seeking a <strong>Co-operative Education (Co-op), Internship</strong>, or <strong>Junior Frontend Developer</strong> position starting 2026. If you are looking for an eager, fast-learning developer with strong front-end fundamentals and real project experience, I would love to connect.
+        </p>
+
+        <!-- Direct Contact Actions Grid -->
+        <div class="pt-4 grid sm:grid-cols-2 gap-4 text-sm font-medium">
+          
+          <!-- Email Box -->
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-[11px] text-slate-400 font-mono">DIRECT EMAIL</p>
+                <a href="mailto:phiangkhua.kor@spumail.net" class="text-white hover:text-blue-300 font-semibold text-xs sm:text-sm">
+                  phiangkhua.kor@spumail.net
+                </a>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('phiangkhua.kor@spumail.net', 'Email address')" class="p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors" title="Copy email">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Phone Box -->
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all flex items-center justify-between group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-[11px] text-slate-400 font-mono">PHONE (TH)</p>
+                <a href="tel:0641714015" class="text-white hover:text-emerald-300 font-semibold text-xs sm:text-sm">
+                  064-171-4015
+                </a>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('0641714015', 'Phone number')" class="p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors" title="Copy phone number">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Social Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="https://github.com/phiangkhuankor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-ink font-semibold text-sm hover:bg-slate-100 transition-all shadow-md">
+            <i data-lucide="github" class="w-4 h-4 text-ink"></i>
+            <span>GitHub Profile</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/phiangkhuan-korsanthia-05a472432?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 border border-white/15 text-white font-semibold text-sm hover:bg-white/20 transition-all">
+            <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i>
+            <span>LinkedIn Profile</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-line py-10 bg-surface">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-subtle">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-ink">Phiangkhuan Korsanthia</span>
+        <span>•</span>
+        <span>Senior CS Student @ Sripatum University</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="#top" class="hover:text-ink transition-colors flex items-center gap-1">
+          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+          <span>Back to Top</span>
+        </a>
+        <span>•</span>
+        <a href="https://github.com/phiangkhuankor" target="_blank" rel="noopener noreferrer" class="hover:text-ink transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/phiangkhuan-korsanthia-05a472432?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="hover:text-ink transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons on load
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    // Copy to clipboard with fallback and animated toast
+    function copyToClipboard(text, label) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`Copied ${label} to clipboard!`);
+        }).catch(() => {
+          fallbackCopy(text, label);
+        });
+      } else {
+        fallbackCopy(text, label);
+      }
+    }
+
+    function fallbackCopy(text, label) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(`Copied ${label} to clipboard!`);
+      } catch (err) {
+        showToast(`Failed to copy.`);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.innerText = msg;
+      
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // Category Filter Handler
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Update button styling
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-ink', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-subtle');
+        } else {
+          btn.classList.remove('bg-ink', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-subtle');
+        }
+      });
+
+      // Filter cards
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Refresh icons after DOM change
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
